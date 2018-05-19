@@ -10,10 +10,13 @@ class ContactListView extends StatelessWidget {
 
     return StreamBuilder<List<Contact>>(
       stream: contactBloc.contacts,
-      builder: (context, snapshot) => ListView.builder(
-          padding: EdgeInsets.all(8.0),
-          itemCount: snapshot.data?.length ?? 0,
-          itemBuilder: (context, index) => ContactListItem(snapshot.data[index])
+      builder: (context, snapshot) => RefreshIndicator(
+        onRefresh: contactBloc.fetchAllFromApi,
+        child: ListView.builder(
+            padding: EdgeInsets.all(8.0),
+            itemCount: snapshot.data?.length ?? 0,
+            itemBuilder: (context, index) => ContactListItem(snapshot.data[index])
+        ),
       ),
     );
   }

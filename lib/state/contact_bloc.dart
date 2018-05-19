@@ -37,10 +37,15 @@ class ContactBloc {
         _contacts.add(existingContacts..addAll(input.contacts));
       }
     });
+
+    fetchAllFromApi();
   }
 
-  void fetchAllFromApi() => api.fetchAll()
-      .then((contacts) => addContacts.add(AddContacts(contacts)));
+  Future<Null> fetchAllFromApi() async {
+    List<Contact> contacts = await api.fetchAll();
+    addContacts.add(AddContacts(contacts));
+    return null;
+  }
 
   void dispose() {
     _addContactsController.close();

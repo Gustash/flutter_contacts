@@ -40,7 +40,6 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final contactBloc = ContactProvider.of(context);
-    contactBloc.fetchAllFromApi();
 
     return new Scaffold(
       bottomNavigationBar: ThemedBottomAppBar(),
