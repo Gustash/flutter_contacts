@@ -1,4 +1,5 @@
 class Contact {
+
   final String id;
   final String firstName;
   final String lastName;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/models/contact.dart';
 import 'package:flutter_contacts/providers/contact_provider.dart';
+import 'package:flutter_contacts/widgets/contact_list_item.dart';
 
 class ContactListView extends StatelessWidget {
   @override
@@ -12,19 +13,8 @@ class ContactListView extends StatelessWidget {
       builder: (context, snapshot) => ListView.builder(
           padding: EdgeInsets.all(8.0),
           itemCount: snapshot.data?.length ?? 0,
-          itemBuilder: (context, index) {
-            return Card(
-              child: Column(
-                children: <Widget>[
-                  ListTile(
-                    title: Text('${snapshot.data[index].firstName} ${snapshot
-                                .data[
-                            index].lastName}'),
-                  ),
-                ],
-              ),
-            );
-          }),
+          itemBuilder: (context, index) => ContactListItem(snapshot.data[index])
+      ),
     );
   }
 }
