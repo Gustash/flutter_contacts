@@ -10,15 +10,9 @@ class ContactDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Hero(
-          tag: "name-${contact.id}",
-          child: Material(
-            color: Color.fromRGBO(0, 0, 0, 0.0),
-            child: Text(
-              "${contact.firstName} ${contact.lastName}",
-              style: Theme.of(context).textTheme.title,
-            )
-          ),
+        title: Text(
+          "${contact.firstName} ${contact.lastName}",
+          style: Theme.of(context).textTheme.title,
         ),
       ),
       body: new Padding(
@@ -35,9 +29,11 @@ class ContactDetailsPage extends StatelessWidget {
                     height: 100.0,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new NetworkImage(contact.avatarUrl ?? contact.thumbnailUrl)
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            contact.avatarUrl ?? contact.thumbnailUrl
+                        ),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),

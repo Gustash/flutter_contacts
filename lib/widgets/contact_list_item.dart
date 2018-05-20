@@ -17,13 +17,7 @@ class ContactListItem extends StatelessWidget {
               tag: 'avatar-${contact.id}',
               child: _buildUserAvatar()
             ),
-            title: Hero(
-              tag: "name-${contact.id}",
-              child: Material(
-                color: Color.fromRGBO(0, 0, 0, 0.0),
-                child: Text('${contact.firstName} ${contact.lastName}')
-              ),
-            ),
+            title: Text('${contact.firstName} ${contact.lastName}'),
             onTap: () {
               Navigator.push(
                 context,
@@ -39,9 +33,14 @@ class ContactListItem extends StatelessWidget {
   }
 
   Widget _buildUserAvatar() {
-    if (Uri.parse(contact.thumbnailUrl).scheme == '') return CircleAvatar();
-    else return CircleAvatar(
+    Widget image;
+    if (Uri.parse(contact.thumbnailUrl).scheme == '') image = CircleAvatar();
+    else image = CircleAvatar(
         backgroundImage: NetworkImage(contact.thumbnailUrl),
       );
+
+    return Material(
+      child: image,
+    );
   }
 }

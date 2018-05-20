@@ -55,18 +55,26 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          contactBloc.addContacts.add(
-              AddContacts.single(
-                  Contact("3", "Janette", "Doette", "foobar.png")
-              )
-          );
-        },
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
-      ),
+      floatingActionButton: _createFAB(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+    );
+  }
+
+  Widget _createFAB(BuildContext context) {
+    ContactBloc contactBloc = ContactProvider.of(context);
+
+    if (contactBloc.api is RandomUserApi) return null;
+
+    return FloatingActionButton(
+      onPressed: () {
+        contactBloc.addContacts.add(
+            AddContacts.single(
+                Contact("3", "Janette", "Doette", "foobar.png")
+            )
+        );
+      },
+      tooltip: 'Increment',
+      child: new Icon(Icons.add),
     );
   }
 }
